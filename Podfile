@@ -5,6 +5,8 @@ def import_pods
     pod 'SwiftyJSON', '~> 4.0'
     pod 'SnapKit', '~> 5.0.0'
     pod 'Masonry', '~> 1.1.0'
+    pod 'Then'
+    pod 'LookinServer', :configurations => ['Debug']
 end
 
 target 'myApp1' do
