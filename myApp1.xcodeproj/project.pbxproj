@@ -19,6 +19,8 @@
 		BECC744526E0E62500839256 /* FloatingWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC744426E0E62500839256 /* FloatingWindowViewController.swift */; };
 		BECC744726E0E64C00839256 /* FloatingWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC744626E0E64C00839256 /* FloatingWindowView.swift */; };
 		BECC744B26E102B000839256 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BECC744A26E102B000839256 /* Images.xcassets */; };
+		BECC745326E23C6D00839256 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC745226E23C6D00839256 /* Extensions.swift */; };
+		BECC745526E263B900839256 /* FloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC745426E263B900839256 /* FloatingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		BECC744426E0E62500839256 /* FloatingWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingWindowViewController.swift; sourceTree = "<group>"; };
 		BECC744626E0E64C00839256 /* FloatingWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingWindowView.swift; sourceTree = "<group>"; };
 		BECC744A26E102B000839256 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BECC745226E23C6D00839256 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BECC745426E263B900839256 /* FloatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingViewController.swift; sourceTree = "<group>"; };
 		C26FA4309C74E31A0FD2718A /* Pods-myApp1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myApp1.release.xcconfig"; path = "Target Support Files/Pods-myApp1/Pods-myApp1.release.xcconfig"; sourceTree = "<group>"; };
 		EBF11E5E7A3592172FB150D0 /* Pods-myApp1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myApp1.debug.xcconfig"; path = "Target Support Files/Pods-myApp1/Pods-myApp1.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +107,7 @@
 				BECC743526DFBAA200839256 /* LaunchScreen.storyboard */,
 				BECC743826DFBAA200839256 /* Info.plist */,
 				BECC744126E0A98300839256 /* NavViewController_1.swift */,
+				BECC745226E23C6D00839256 /* Extensions.swift */,
 			);
 			path = myApp1;
 			sourceTree = "<group>";
@@ -111,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				BECC744426E0E62500839256 /* FloatingWindowViewController.swift */,
+				BECC745426E263B900839256 /* FloatingViewController.swift */,
 				BECC744626E0E64C00839256 /* FloatingWindowView.swift */,
 			);
 			path = FloatingWindow;
@@ -234,10 +240,12 @@
 			files = (
 				BECC744226E0A98300839256 /* NavViewController_1.swift in Sources */,
 				BECC742F26DFBA9F00839256 /* ViewController.swift in Sources */,
+				BECC745526E263B900839256 /* FloatingViewController.swift in Sources */,
 				BECC742B26DFBA9F00839256 /* AppDelegate.swift in Sources */,
 				BECC744526E0E62500839256 /* FloatingWindowViewController.swift in Sources */,
 				BECC744726E0E64C00839256 /* FloatingWindowView.swift in Sources */,
 				BECC742D26DFBA9F00839256 /* SceneDelegate.swift in Sources */,
+				BECC745326E23C6D00839256 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

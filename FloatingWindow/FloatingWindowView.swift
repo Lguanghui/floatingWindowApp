@@ -42,7 +42,8 @@ class FloatingWindowView: UIView {
             make.bottom.top.left.right.equalToSuperview()
         }
         mainView.layer.masksToBounds = true
-        mainView.backgroundColor = UIColor.init(red: 36, green: 199, blue: 137, alpha: 1)
+        mainView.backgroundColor = UIColor.init(hexString: "#24C789")
+//        mainView.backgroundColor = .blue
         
         backBtn.snp.makeConstraints { make in
             make.height.width.equalTo(18)
@@ -57,5 +58,16 @@ class FloatingWindowView: UIView {
             // 先写死宽度，后面要根据实际title调整
             make.width.equalTo(50)
         }
+        titleLabel.text = "Keep"
+        
+        closeBtn.snp.makeConstraints { make in
+            make.left.equalTo(titleLabel.snp.right).offset(4)
+            make.top.equalToSuperview().offset(10)
+            make.width.height.equalTo(14.4)
+        }
+    }
+    
+    func updateViews(sourceAppName: String) {
+        titleLabel.text = sourceAppName
     }
 }

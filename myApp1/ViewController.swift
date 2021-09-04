@@ -13,8 +13,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setupViews()
+        installFloatWindow()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,11 +28,19 @@ class ViewController: UIViewController {
         btn.titleLabel?.font = .systemFont(ofSize: 13)
     }
     
+    private let btn2 = UIButton().then { btn in
+        btn.backgroundColor = .yellow
+        btn.setTitle("跳转page", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 13)
+    }
+    
     func setupViews() {
         let mainView = UIView()
         
         self.view.addSubview(mainView)
         mainView.addSubview(btn)
+        mainView.addSubview(btn2)
         
         mainView.snp.makeConstraints { view in
             view.left.right.equalToSuperview()
@@ -47,7 +55,25 @@ class ViewController: UIViewController {
         }
         btn.addTarget(self, action: #selector(gotoKeep), for: .touchUpInside)
         
+        btn2.snp.makeConstraints { make in
+            make.height.equalTo(20)
+            make.width.equalTo(100)
+            make.top.equalTo(btn.snp.bottom).offset(8)
+            make.centerX.equalToSuperview()
+        }
+        btn2.addTarget(self, action: #selector(gotoKeep), for: .touchUpInside)
+        
         mainView.backgroundColor = .orange
+    }
+    
+    func installFloatWindow() {
+        let floatingWindowViewController = FloatingWindowViewController()
+        floatingWindowViewController.view.frame = UIScreen.main.bounds
+//        floatingWindowViewController.view.frame = CGRect.zero
+        floatingWindowViewController.setupViews()
+    
+        addChild(floatingWindowViewController)
+        view.addSubview(floatingWindowViewController.view)
     }
     
     @objc func gotoKeep() {
@@ -57,6 +83,14 @@ class ViewController: UIViewController {
         if UIApplication.shared.canOpenURL(Url!) {
             UIApplication.shared.open(Url!, options: [:], completionHandler: nil)
         }
+    }
+    
+    @objc func showAnotherPage() {
+        let page1 = NavViewController_1()
+        page1.view.frame = UIScreen.main.bounds
+        page1.view.isUserInteractionEnabled = false
+        page1.view.backgroundColor = .blue
+        self.present(page1, animated: true, completion: nil)
     }
 }
 
