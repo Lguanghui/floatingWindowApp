@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         super.viewWillAppear(true)
     }
     
+    var floatWindow: UIWindow = UIWindow(frame: CGRect(x: 0, y: screenH/2, width: 100, height: 32))
+    
     private let btn = UIButton().then { btn in
         btn.backgroundColor = .yellow
         btn.setTitle("跳转到keep", for: .normal)
@@ -61,19 +63,36 @@ class ViewController: UIViewController {
             make.top.equalTo(btn.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
         }
-        btn2.addTarget(self, action: #selector(gotoKeep), for: .touchUpInside)
+        btn2.addTarget(self, action: #selector(showAnotherPage), for: .touchUpInside)
         
         mainView.backgroundColor = .orange
     }
     
     func installFloatWindow() {
-        let floatingWindowViewController = FloatingWindowViewController()
-        floatingWindowViewController.view.frame = UIScreen.main.bounds
+//        let floatingWindowViewController = FloatingWindowViewController()
+//        floatingWindowViewController.view.frame = UIScreen.main.bounds
 //        floatingWindowViewController.view.frame = CGRect.zero
-        floatingWindowViewController.setupViews()
-    
-        addChild(floatingWindowViewController)
-        view.addSubview(floatingWindowViewController.view)
+//        floatingWindowViewController.setupViews()
+        
+//        floatWindow = UIWindow(frame: CGRect(x: 0, y: screenH/2, width: 100, height: 32))
+//        floatWindow.frame = CGRect(x: 0, y: screenH/2, width: 100, height: 32)
+        
+        
+        // window不置顶是UIWindowScene的问题
+        let w = UIApplication.shared.windows.first?.windowScene
+        floatWindow.windowScene = w
+        
+        floatWindow.windowLevel = UIWindow.Level.alert + 1
+        let floatingWindowController = FloatingViewController()
+        floatWindow.rootViewController = floatingWindowController
+        floatingWindowController.addGestureRecognizer(win: floatWindow)
+//        floatingWindowController.setupViews()
+        floatWindow.makeKeyAndVisible()
+        floatWindow.isHidden = false
+        print(UIApplication.shared.windows.count)
+        
+//        view.addSubview(floatWindow)
+//        addChild(floatingWindowController)
     }
     
     @objc func gotoKeep() {

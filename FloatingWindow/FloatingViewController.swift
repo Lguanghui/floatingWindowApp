@@ -11,8 +11,7 @@ class FloatingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        setupViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,17 +27,21 @@ class FloatingViewController: UIViewController {
     
     func setupViews() {
         view.addSubview(floatView)
-        view.snp.makeConstraints { make in
-            make.top.left.bottom.right.equalToSuperview()
-        }
+//        view.snp.makeConstraints { make in
+//            make.top.left.bottom.right.equalToSuperview()
+//        }
         
         floatView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
         }
         floatView.setupViews()
         
+    }
+    
+    func addGestureRecognizer(win: UIWindow) {
         panGestureRecognizer.addTarget(self, action: #selector(panGesture(recognizer:)))
-        floatView.addGestureRecognizer(panGestureRecognizer)
+//        floatView.addGestureRecognizer(panGestureRecognizer)
+        win.addGestureRecognizer(panGestureRecognizer)
     }
     
     // 拖拽手势
@@ -53,17 +56,17 @@ class FloatingViewController: UIViewController {
         recognizer.setTranslation(CGPoint.zero, in: view.superview)
         // 拖拽停止/取消/失败
         if recognizer.state == .ended || recognizer.state == .cancelled || recognizer.state == .failed {
-            updateViewPosition()
+            updateViewPosition(recognizer: recognizer)
         }
         
     }
     
     // 更新按钮位置
-    func updateViewPosition() {
-        if floatView.frame.size.width > (floatView.superview?.frame.size.width)! && floatView.frame.size.height > (floatView.superview?.frame.size.height)! {
-            // 保证浮窗在屏幕里面
-            return
-        }
+    func updateViewPosition(recognizer: UIPanGestureRecognizer) {
+//        if (recognizer.view?.frame.size.width)! > (recognizer.view?.superview?.frame.size.width)! && floatView.frame.size.height > (floatView.superview?.frame.size.height)! {
+//            // 保证浮窗在屏幕里面
+//            return
+//        }
         
         var W = screenW
         var H = screenH
@@ -74,15 +77,16 @@ class FloatingViewController: UIViewController {
             H = screenW
         }
         
-        let distance_to_leftEdge = floatView.frame.origin.x
+        let distance_to_leftEdge = recognizer.view?.frame.origin.x
         
-        if distance_to_leftEdge > 0 {
+        if distance_to_leftEdge! > 0 {
             UIView .animate(withDuration: 0.3) { [weak self] in
                 guard let self = self else {
                     return
                 }
 //                let center = CGPoint(x: 0, y: self.floatWindow.frame.origin.y)
-                self.view.superview!.frame.origin.x = 0
+//                self.view.superview!.frame.origin.x = 0
+                recognizer.view?.frame.origin.x = 0
             }
         }
     }
