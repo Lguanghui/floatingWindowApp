@@ -96,7 +96,8 @@ class ViewController: UIViewController {
     }
     
     @objc func gotoKeep() {
-        let url = "keep://settings?backname=%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91&backurl=tenvideo2%3A%2F%2F%3Faction%3D66&backpkg=com.tencent.qqlive"
+//        let url = "keep://settings?backname=%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91&backurl=tenvideo2%3A%2F%2F%3Faction%3D66&backpkg=com.tencent.qqlive"
+        let url = "keep://home?tab=hot&backname=%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91&backurl=tenvideo2%3A%2F%2F%3Faction%3D66&backpkg=com.tencent.qqlive"
         let Url = URL.init(string: url)
         
         if UIApplication.shared.canOpenURL(Url!) {
