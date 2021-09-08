@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objcMembers
 class FloatingViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -27,9 +28,6 @@ class FloatingViewController: UIViewController {
     
     func setupViews() {
         view.addSubview(floatView)
-//        view.snp.makeConstraints { make in
-//            make.top.left.bottom.right.equalToSuperview()
-//        }
         
         floatView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
@@ -40,20 +38,19 @@ class FloatingViewController: UIViewController {
     
     func addGestureRecognizer(win: UIWindow) {
         panGestureRecognizer.addTarget(self, action: #selector(panGesture(recognizer:)))
-//        floatView.addGestureRecognizer(panGestureRecognizer)
         win.addGestureRecognizer(panGestureRecognizer)
     }
     
     // 拖拽手势
     @objc func panGesture(recognizer: UIPanGestureRecognizer) {
-        let point: CGPoint = recognizer.translation(in: view.superview)
+        let point: CGPoint = recognizer.translation(in: self.view.superview)
         guard let view = recognizer.view else {
             return
         }
         let center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
         view.center = center
         
-        recognizer.setTranslation(CGPoint.zero, in: view.superview)
+        recognizer.setTranslation(CGPoint.zero, in: self.view.superview)
         // 拖拽停止/取消/失败
         if recognizer.state == .ended || recognizer.state == .cancelled || recognizer.state == .failed {
             updateViewPosition(recognizer: recognizer)
@@ -63,31 +60,28 @@ class FloatingViewController: UIViewController {
     
     // 更新按钮位置
     func updateViewPosition(recognizer: UIPanGestureRecognizer) {
-//        if (recognizer.view?.frame.size.width)! > (recognizer.view?.superview?.frame.size.width)! && floatView.frame.size.height > (floatView.superview?.frame.size.height)! {
-//            // 保证浮窗在屏幕里面
-//            return
-//        }
         
-        var W = screenW
-        var H = screenH
-        let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
-        
-        if orientation == .landscapeLeft || orientation == .landscapeRight {
-            W = screenH
-            H = screenW
+        UIView .animate(withDuration: 0.3) { [weak self] in
+            recognizer.view?.frame.origin.x = 0
         }
+    }
+    
+    // MARK:-屏幕旋转
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         
-        let distance_to_leftEdge = recognizer.view?.frame.origin.x
-        
-        if distance_to_leftEdge! > 0 {
-            UIView .animate(withDuration: 0.3) { [weak self] in
-                guard let self = self else {
-                    return
-                }
-//                let center = CGPoint(x: 0, y: self.floatWindow.frame.origin.y)
-//                self.view.superview!.frame.origin.x = 0
-                recognizer.view?.frame.origin.x = 0
-            }
+        coordinator.animate { context in
+            
+        } completion: { context in
+            floatWindow?.frame.size.width = 100
+            floatWindow?.frame.size.height = 32
+            floatWindow?.frame.origin.x = 0
+            floatWindow?.frame.origin.y = 200
         }
+
     }
 }
