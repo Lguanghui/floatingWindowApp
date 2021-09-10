@@ -7,29 +7,32 @@
 
 import UIKit
 
-var floatWindow: UIWindow? = nil
+var floatWindow: UIWindow = UIWindow()
 
+@objcMembers
 class firstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         parentVC = self.parent as? UINavigationController
         setupViews()
-        installFloatWindow()
+        
+        // 装载浮窗
+        installFloatingWindow()
     }
     
     var parentVC: UINavigationController?
     
     private let btn = UIButton().then { btn in
         btn.backgroundColor = .yellow
-        btn.setTitle("跳转到keep", for: .normal)
+        btn.setTitle("跳转到另一应用", for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 13)
     }
     
     private let btn2 = UIButton().then { btn in
         btn.backgroundColor = .yellow
-        btn.setTitle("跳转page", for: .normal)
+        btn.setTitle("跳转到另一page", for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 13)
     }
@@ -53,14 +56,14 @@ class firstViewController: UIViewController {
         
         btn.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.width.equalTo(100)
+            make.width.equalTo(110)
             make.center.equalToSuperview()
         }
         btn.addTarget(self, action: #selector(gotoKeep), for: .touchUpInside)
         
         btn2.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.width.equalTo(100)
+            make.width.equalTo(110)
             make.top.equalTo(btn.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
         }
@@ -69,15 +72,28 @@ class firstViewController: UIViewController {
         mainView.backgroundColor = .orange
     }
     
-    func installFloatWindow() {
+    func installFloatingWindow() {
+        // 设置window的初始位置和长宽
         floatWindow = UIWindow(frame: CGRect(x: 0, y: 200, width: 100, height: 32))
-        floatWindow?.windowScene = UIApplication.shared.keyWindow?.windowScene
-        floatWindow?.layer.masksToBounds = true
-        floatWindow?.windowLevel = UIWindow.Level.alert + 1
+        
+        // 基于windowScene的应用需要设置一下Scene，否则不需要设置
+        floatWindow.windowScene = UIApplication.shared.keyWindow?.windowScene
+        
+        // 防止旋转屏幕时浮窗四周出现黑色矩形
+        floatWindow.layer.masksToBounds = true
+        // window优先级
+        floatWindow.windowLevel = UIWindow.Level.alert + 1
+        
+        // 设置window的根控制器，用来接收手势操作等
         let floatingWindowController = FloatingViewController()
-        floatWindow?.rootViewController = floatingWindowController
-        floatingWindowController.addGestureRecognizer(win: floatWindow!)
-        floatWindow?.isHidden = false
+        floatWindow.rootViewController = floatingWindowController
+        // 给window添加手势
+        floatingWindowController.addGestureRecognizer(win: floatWindow)
+        // 设置浮窗能否被拖离屏幕边缘,默认true
+        floatingWindowController.isCanDragOut = true
+        
+        // 显示浮窗
+        floatWindow.isHidden = false
         print(UIApplication.shared.windows.count)
     }
     

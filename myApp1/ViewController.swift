@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
+@objcMembers
 class ViewController: UINavigationController {
 
     override func viewDidLoad() {
@@ -21,4 +22,3 @@ class ViewController: UINavigationController {
         super.viewWillAppear(true)
     }
 }
-

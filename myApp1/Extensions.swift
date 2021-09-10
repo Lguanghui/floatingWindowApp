@@ -18,7 +18,7 @@ extension UIColor {
         if hexString.hasPrefix("#") {
             scanner.scanLocation = 1
         }
-         
+        
         var color: UInt32 = 0
         scanner.scanHexInt32(&color)
          

@@ -28,6 +28,7 @@ class FloatingWindowView: UIView {
     private let titleLabel = UILabel().then { make in
         make.font = UIFont.systemFont(ofSize: 12)
         make.textColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        make.textAlignment = .center
     }
     
     private let mainView = UIView()
@@ -43,7 +44,6 @@ class FloatingWindowView: UIView {
         }
         mainView.layer.masksToBounds = true
         mainView.backgroundColor = UIColor.init(hexString: "#24C789")
-//        mainView.backgroundColor = .blue
         
         backBtn.snp.makeConstraints { make in
             make.height.width.equalTo(18)
@@ -58,7 +58,7 @@ class FloatingWindowView: UIView {
             // 先写死宽度，后面要根据实际title调整
             make.width.equalTo(50)
         }
-        titleLabel.text = "Keep"
+        titleLabel.text = "嘿嘿嘿"
         
         closeBtn.snp.makeConstraints { make in
             make.left.equalTo(titleLabel.snp.right).offset(4)
