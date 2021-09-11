@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22A250C726ED29CB00D48AE3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22A250C626ED29CB00D48AE3 /* README.md */; };
 		81F1BD5B23DC3EC1C320B9EC /* Pods_myApp1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8726019708C8291501C1913F /* Pods_myApp1.framework */; };
 		BE3332BE26E8929A00A629E9 /* firstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3332BD26E8929A00A629E9 /* firstViewController.swift */; };
 		BE3332C026E8B00800A629E9 /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3332BF26E8B00800A629E9 /* secondViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22A250C626ED29CB00D48AE3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8726019708C8291501C1913F /* Pods_myApp1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myApp1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3332BD26E8929A00A629E9 /* firstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstViewController.swift; sourceTree = "<group>"; };
 		BE3332BF26E8B00800A629E9 /* secondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		BECC741E26DFBA9F00839256 = {
 			isa = PBXGroup;
 			children = (
+				22A250C626ED29CB00D48AE3 /* README.md */,
 				BECC744326E0E5CC00839256 /* FloatingWindow */,
 				BECC744026E068A600839256 /* MyPlayground.playground */,
 				BECC743E26DFBB9400839256 /* Podfile */,
@@ -192,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A250C726ED29CB00D48AE3 /* README.md in Resources */,
 				BECC743726DFBAA200839256 /* LaunchScreen.storyboard in Resources */,
 				BECC743426DFBAA200839256 /* Assets.xcassets in Resources */,
 				BECC744B26E102B000839256 /* Images.xcassets in Resources */,
