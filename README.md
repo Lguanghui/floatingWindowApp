@@ -1,1 +1,5 @@
-# Floating Window in iOS App
+# iOS应用内部悬浮窗
+
+# 介绍
+
+本项目能在iOS应用内部生成一个悬浮窗，可用于应用间跳转、功能切换等场景。

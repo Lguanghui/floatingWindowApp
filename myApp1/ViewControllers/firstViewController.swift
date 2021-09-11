@@ -97,8 +97,12 @@ class firstViewController: UIViewController {
         let url = ""    // schema of your another App， 跳转到另一个App的schema
         let Url = URL.init(string: url)
         
-        if UIApplication.shared.canOpenURL(Url!) {
-            UIApplication.shared.open(Url!, options: [:], completionHandler: nil)
+        guard let schema = Url else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(schema) {
+            UIApplication.shared.open(schema, options: [:], completionHandler: nil)
         }
     }
     
