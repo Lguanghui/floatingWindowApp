@@ -95,13 +95,15 @@ class FloatingViewController: UIViewController {
             view.layer.mask = nil
             view.layer.cornerRadius = 14
         } else {
-            view.layer.cornerRadius = 0
-            let corners: UIRectCorner = [.bottomRight, .topRight]
-            let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 12, height: 12))
-            let maskLayer = CAShapeLayer()
-            maskLayer.frame = view.bounds
-            maskLayer.path = maskPath.cgPath
-            view.layer.mask = maskLayer
+            UIView.animate(withDuration: 0.3) {
+                self.view.layer.cornerRadius = 0
+                let corners: UIRectCorner = [.bottomRight, .topRight]
+                let maskPath = UIBezierPath(roundedRect: self.view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 12, height: 12))
+                let maskLayer = CAShapeLayer()
+                maskLayer.frame = self.view.bounds
+                maskLayer.path = maskPath.cgPath
+                self.view.layer.mask = maskLayer
+            }
         }
     }
     

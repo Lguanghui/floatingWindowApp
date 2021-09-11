@@ -40,10 +40,6 @@ class firstViewController: UIViewController {
     func setupViews() {
         let mainView = UIView()
         
-        guard let parent = self.parent as? UINavigationController else {
-            return
-        }
-        
         self.view.addSubview(mainView)
         mainView.addSubview(btn)
         mainView.addSubview(btn2)
@@ -59,7 +55,7 @@ class firstViewController: UIViewController {
             make.width.equalTo(110)
             make.center.equalToSuperview()
         }
-        btn.addTarget(self, action: #selector(gotoKeep), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(gotoAnotherApp), for: .touchUpInside)
         
         btn2.snp.makeConstraints { make in
             make.height.equalTo(20)
@@ -97,9 +93,8 @@ class firstViewController: UIViewController {
         print(UIApplication.shared.windows.count)
     }
     
-    @objc func gotoKeep() {
-//        let url = "keep://settings?backname=%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91&backurl=tenvideo2%3A%2F%2F%3Faction%3D66&backpkg=com.tencent.qqlive"
-        let url = "keep://home?tab=hot&backname=%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91&backurl=tenvideo2%3A%2F%2F%3Faction%3D66&backpkg=com.tencent.qqlive"
+    @objc func gotoAnotherApp() {
+        let url = ""    // schema of your another App， 跳转到另一个App的schema
         let Url = URL.init(string: url)
         
         if UIApplication.shared.canOpenURL(Url!) {
